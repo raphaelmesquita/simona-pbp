@@ -41,5 +41,5 @@ jobs:
       - run: yarn ng build --prod
 
       # run tests!
-      - run: yarn ng test --watch=false
+      # - run: yarn ng test --watch=false
 
