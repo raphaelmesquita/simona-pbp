@@ -47,6 +47,7 @@ jobs:
       # build image
       - run: |
           TAG=0.1.$CIRCLE_BUILD_NUM
-          docker build -f DockerFile -t simonaci.azurecr.io/hello:latest -t simonaci.azurecr.io/hello:$TAG .
+          docker build -f DockerFile -t simonaci.azurecr.io/hello:$TAG .
+          docker tag simonaci.azurecr.io/hello:$TAG simonaci.azurecr.io/hello:latest
           docker login -u $DOCKER_USER -p $DOCKER_PASS simonaci.azurecr.io
-          docker push simonaci.azurecr.io/hello:$TAG
+          docker push simonaci.azurecr.io/hello
