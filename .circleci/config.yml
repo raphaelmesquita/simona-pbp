@@ -46,11 +46,7 @@ jobs:
 
       # build image
       - run: |
-        TAG=0.1.$CIRCLE_BUILD_NUM
-        docker build -f DockerFile -t simonaci.azurecr.io/hello:latest -t simonaci.azurecr.io/hello:$TAG .
-
-      # login to registry
-      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS simonaci.azurecr.io
-
-      # deploy the image
-      - run: docker push simonaci.azurecr.io/hello:$TAG
+          TAG=0.1.$CIRCLE_BUILD_NUM
+          docker build -f DockerFile -t simonaci.azurecr.io/hello:latest -t simonaci.azurecr.io/hello:$TAG .
+          docker login -u $DOCKER_USER -p $DOCKER_PASS simonaci.azurecr.io
+          docker push simonaci.azurecr.io/hello:$TAG
