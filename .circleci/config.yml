@@ -45,10 +45,12 @@ jobs:
       # - run: yarn ng test --watch=false
 
       # build image
-      - run: docker build -f DockerFile -t simonaci.azurecr.io/hello:$TAG_SIMONA .
+      - run: |
+        TAG=0.1.$CIRCLE_BUILD_NUM
+        docker build -f DockerFile -t simonaci.azurecr.io/hello:latest -t simonaci.azurecr.io/hello:$TAG .
 
       # login to registry
       - run: docker login -u $DOCKER_USER -p $DOCKER_PASS simonaci.azurecr.io
 
       # deploy the image
-      - run: docker push simonaci.azurecr.io/hello:$TAG_SIMONA
+      - run: docker push simonaci.azurecr.io/hello:$TAG
