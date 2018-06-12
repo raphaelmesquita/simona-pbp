@@ -1,5 +1,5 @@
-FROM nginx:alpine
+FROM microsoft/iis
 LABEL author="Raphael Lima"
-COPY ./dist/simona /usr/share/nginx/html
+RUN powershell -NoProfile -Command Remove-Item -Recurse C:\inetpub\wwwroot\*
+COPY ./dist/simona /inetpub/wwwroot
 EXPOSE 80 443
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
